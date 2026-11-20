@@ -1,0 +1,16 @@
+services:
+  dev:
+    build:
+      context: .
+    image: tkino117/dev:0.1.0-rootless
+    container_name: kino-dev
+    command: sleep infinity
+    shm_size: "192g"
+    volumes:
+      - .:/root/work
+    working_dir: /root/work
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
