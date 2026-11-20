@@ -1,0 +1,19 @@
+services:
+  dev:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: tkino117/dev:0.1.0
+    container_name: kino-dev
+    command: sleep infinity
+    shm_size: "192g"
+    volumes:
+      - .:/home/kino/work
+    working_dir: /home/kino/work
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
